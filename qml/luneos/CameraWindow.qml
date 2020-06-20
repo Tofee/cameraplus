@@ -20,23 +20,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-import QtQuick 2.0
-import Sailfish.Silica 1.0
+import QtQuick 2.12
 
-ApplicationWindow {
+Item {
     id: _window
     property url standByIcon
+    property Component initialPage
+    property Item page
     property bool active: Qt.application.active
 
-    function popAll() {
-        while (pageStack.depth > 1) {
-            pageStack.pop(null, PageStackAction.Immediate)
+    Component.onDestruction: page.destroy()
+    Component.onCompleted: {
+        screen.setAllowedOrientations(Screen.Landscape | Screen.LandscapeInverted)
+        theme.inverted = true
+
+        if (initialPage) {
+            page = initialPage.createObject(window)
+            page.visible = true
         }
     }
 
-    cover: CoverBackground {
-               CoverPlaceholder {
-                   icon.source: _window.standByIcon
-               }
-           }
+    function popAll() {
+        // Nothing
+    }
 }

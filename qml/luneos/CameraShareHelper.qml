@@ -20,9 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-import QtQuick 2.0
-import Sailfish.Silica 1.0
-import Sailfish.TransferEngine 1.0
+import QtQuick 2.12
+import QtQuick.Controls 2.5
 
 Item {
     id: share
@@ -31,12 +30,14 @@ Item {
     anchors.fill: parent
 
     function shareUrl(url, mime, file) {
-        if (url == "" || mime == "" || file == "") {
+        if (url === "" || mime === "" || file === "") {
             return false
         }
 
-        pageStack.push(sharePage, {"fileName": file, "mime": mime, "url": url})
-        return true
+        return false;
+
+        //pageStack.push(sharePage, {"fileName": file, "mime": mime, "url": url})
+        //return true
     }
 
     Component {
@@ -47,7 +48,7 @@ Item {
             property string mime
             property url url
             property string fileName
-
+            /*
             ShareMethodList {
                 anchors.fill: parent
                 filter: mime
@@ -56,6 +57,7 @@ Item {
                     title: qsTr("Share %1").arg(fileName)
                 }
             }
+            */
         }
     }
 }

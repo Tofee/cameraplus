@@ -20,28 +20,72 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-import QtQuick 2.0
-import Sailfish.Silica 1.0
+import QtQuick 2.12
 
-RemorseItem {
-    property string file
+MouseArea {
+    id: dialog
+
+    property alias file: message.text
     property Item item
     property Item page
 
-    property bool _triggered
+    z: 1
+    anchors.fill: parent
+    parent: visible ? page : item
+    visible: opacity > 0
+    enabled: visible
+    opacity: 0
 
-    function doDelete() {
-        _triggered = true
-        item.deleteUrl()
-    }
-
-    Component.onDestruction: {
-        if (_triggered) {
-            item.deleteUrlNow()
-        }
+    Behavior on opacity {
+        NumberAnimation { duration: 100 }
     }
 
     function open() {
-        execute(item, qsTr("Deleting %1").arg(file), doDelete)
+        opacity = 1
+    }
+
+    function close() {
+        opacity = 0
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: cameraStyle.backgroundColor
+        opacity: 0.8
+    }
+
+    Column {
+        anchors.centerIn: parent
+        spacing: cameraStyle.spacingLarge
+
+        CameraLabel {
+            width: parent.width
+            font.pixelSize: cameraStyle.fontSizeLarge
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            text: qsTr("Delete item?")
+        }
+
+        CameraLabel {
+            id: message
+            width: parent.width
+            font.pixelSize: cameraStyle.fontSizeMedium
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        CameraButton {
+            text: qsTr("Yes")
+            onClicked: {
+                item.deleteUrl()
+                dialog.close()
+            }
+        }
+
+        CameraButton {
+            text: qsTr("No")
+            onClicked: {
+                dialog.close()
+            }
+        }
     }
 }

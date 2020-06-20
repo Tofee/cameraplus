@@ -20,11 +20,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-import QtQuick 2.0
-import Sailfish.Silica 1.0
+import QtQuick 2.12
+import QtQuick.Controls 2.5
 
 Page {
-    allowedOrientations: Orientation.Landscape | Orientation.LandscapeInverted
-
-    property int orientationAngle: rotation
+    anchors.fill: parent
+    color: cameraStyle.backgroundColor
+    property int orientationAngle: 0
 }

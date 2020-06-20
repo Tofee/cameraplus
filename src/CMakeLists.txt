@@ -100,8 +100,6 @@ if (SAILFISH)
   target_link_libraries(cameraplus -L${CMAKE_BINARY_DIR}/deps/usr/lib/ -lquill-qt5 -lffmpegthumbnailer -L${FFMPEG_DIR}/lib/ -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample -lswscale -lexempi)
 elseif (LUNEOS)
   qt5_use_modules(cameraplus Gui Quick)
-  add_dependencies(cameraplus quill)
-  target_link_libraries(cameraplus -L${CMAKE_BINARY_DIR}/deps/usr/lib/ -lquill-qt5 -lffmpegthumbnailer -L${FFMPEG_DIR}/lib/ -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample -lswscale -lexempi)
 endif()
 
 install(TARGETS cameraplus DESTINATION bin)

@@ -66,7 +66,9 @@
 #endif
 #include "devicesettings.h"
 #include "pluginloader.h"
+#ifndef LUNEOS
 #include <MDeclarativeCache>
+#endif
 #ifdef SAILFISH
 #include <QQmlEngine>
 #endif
@@ -112,6 +114,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[]) {
   setenv("LD_LIBRARY_PATH", "/usr/share/harbour-cameraplus/lib/", 1);
 #endif
 
+#ifdef LUNEOS
+  QGuiApplication *app = new QGuiApplication(argc, argv);
+  app->setApplicationName("cameraplus");
+
+  QQuickView *view = new QQuickView();
+#else
 #if defined(QT4)
   QApplication *app = MDeclarativeCache::qApplication(argc, argv);
   app->setApplicationName("cameraplus");
@@ -125,6 +133,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[]) {
   app->setApplicationName("cameraplus");
 
   QQuickView *view = MDeclarativeCache::qQuickView();
+#endif
 #endif
 
   QTranslator plurals;

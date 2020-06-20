@@ -83,6 +83,12 @@ elseif (PLATFORM STREQUAL "luneos")
   set(LUNEOS 1)
   set(QT5 1)
 
+  include(webOS/webOS REQUIRED)
+  webos_modules_init(1 0 0 QUALIFIER RC3)
+  webos_component(0 5 0)
+
+  set(APP_DIR ${WEBOS_INSTALL_WEBOS_APPLICATIONSDIR}/cameraplus)
+
   # This is used by exec_program() to get the imports dir
   get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake LOCATION)
   # We need to query this manually

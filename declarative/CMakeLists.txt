@@ -90,13 +90,11 @@ configure_gst(declarativeqtcamera)
 
 target_link_libraries(declarativeqtcamera ${DECLARATIVE_LDFLAGS} qtcamera)
 
-install(TARGETS declarativeqtcamera DESTINATION ${QT_INSTALL_IMPORTS}/QtCamera)
-install(FILES qmldir DESTINATION ${QT_INSTALL_IMPORTS}/QtCamera)
+install(TARGETS declarativeqtcamera DESTINATION ${APP_DIR}/QtCamera)
+install(FILES qmldir DESTINATION ${APP_DIR}/QtCamera)
 
 add_definitions(-DQT_PLUGIN)
 
-if (SAILFISH)
-  qt5_use_modules(declarativeqtcamera Qml Quick DBus)
-elseif (LUNEOS)
+if (SAILFISH OR LUNEOS)
   qt5_use_modules(declarativeqtcamera Qml Quick DBus)
 endif()

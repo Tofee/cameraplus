@@ -19,29 +19,15 @@
  */
 
 #include "batteryinfo.h"
-#include <contextproperty.h>
 #if defined(QT4)
 #include <QDeclarativeInfo>
 #elif defined(QT5)
 #include <QQmlInfo>
 #endif
 
-#define PERCENTAGE_PROPERTY          "Battery.ChargePercentage"
-#define CHARGING_PROPERTY            "Battery.IsCharging"
-#define BATTERY_LOW_THRESHOLD        5
-
 BatteryInfo::BatteryInfo(QObject *parent) :
-  QObject(parent),
-  m_percentage(new ContextProperty(PERCENTAGE_PROPERTY, this)),
-  m_charging(new ContextProperty(CHARGING_PROPERTY, this)) {
+  QObject(parent) {
 
-  m_percentage->waitForSubscription(true);
-  m_charging->waitForSubscription(true);
-
-  QObject::connect(m_percentage, SIGNAL(valueChanged()), this, SLOT(check()));
-  QObject::connect(m_charging, SIGNAL(valueChanged()), this, SLOT(check()));
-
-  check();
 }
 
 BatteryInfo::~BatteryInfo() {
@@ -50,19 +36,4 @@ BatteryInfo::~BatteryInfo() {
 
 bool BatteryInfo::isGood() const {
   return m_isGood;
-}
-
-void BatteryInfo::check() {
-  bool isGood = false;
-
-  if (m_charging->value().toBool()) {
-    isGood = true;
-  } else if (m_percentage->value().toInt() > BATTERY_LOW_THRESHOLD) {
-    isGood = true;
-  }
-
-  if (isGood != m_isGood) {
-    m_isGood = isGood;
-    emit isGoodChanged();
-  }
 }

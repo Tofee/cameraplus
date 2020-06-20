@@ -25,8 +25,6 @@
 
 #include <QObject>
 
-class ContextProperty;
-
 class BatteryInfo : public QObject {
   Q_OBJECT
 
@@ -41,12 +39,7 @@ public:
 signals:
   void isGoodChanged();
 
-private slots:
-  void check();
-
 private:
-  ContextProperty *m_percentage;
-  ContextProperty *m_charging;
   bool m_isGood;
 };
 

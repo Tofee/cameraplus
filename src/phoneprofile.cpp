@@ -21,19 +21,11 @@
  */
 
 #include "phoneprofile.h"
-#include <contextproperty.h>
-
-#define PHONE_PROFILE_PROPERTY "Profile.Name"
-#define SILENT_PROFILE_NAME    "silent"
 
 PhoneProfile::PhoneProfile(QObject *parent) :
   QObject(parent),
-  m_profile(new ContextProperty(PHONE_PROFILE_PROPERTY, this)),
   m_isSilent(false) {
 
-  QObject::connect(m_profile, SIGNAL(valueChanged()), this, SLOT(phoneProfileChanged()));
-  m_profile->waitForSubscription(true);
-  phoneProfileChanged();
 }
 
 PhoneProfile::~PhoneProfile() {
@@ -44,11 +36,3 @@ bool PhoneProfile::isSilent() {
   return m_isSilent;
 }
 
-void PhoneProfile::phoneProfileChanged() {
-  bool silent = (m_profile->value().toString() == QLatin1String(SILENT_PROFILE_NAME));
-
-  if (silent != m_isSilent) {
-    m_isSilent = silent;
-    emit isSilentChanged();
-  }
-}

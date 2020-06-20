@@ -25,8 +25,6 @@
 
 #include <QObject>
 
-class ContextProperty;
-
 class PhoneProfile : public QObject {
   Q_OBJECT
 
@@ -41,11 +39,7 @@ public:
 signals:
   void isSilentChanged();
 
-private slots:
-  void phoneProfileChanged();
-
 private:
-  ContextProperty *m_profile;
   bool m_isSilent;
 };
 

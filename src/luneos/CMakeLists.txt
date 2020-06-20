@@ -22,8 +22,6 @@ set(EXTRA_HEADER_FILES
 
 pkg_check_modules(EXTRA REQUIRED
   Qt5SystemInfo
-  Qt5Sparql
-  libresourceqt5
   Qt5Sensors
   )
 

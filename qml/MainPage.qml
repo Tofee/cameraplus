@@ -324,11 +324,19 @@ CameraPage {
         id: mountProtector
     }
 
-    TrackerStore {
+    QtObject {
         id: trackerStore
-        active: viewfinder.camera.running
-        manufacturer: deviceInfo.manufacturer
-        model: deviceInfo.model
+        property bool active: viewfinder.camera.running
+        property string manufacturer: deviceInfo.manufacturer
+        property string model: deviceInfo.model
+        
+        function storeImage(fileName) {
+            console.log("TrackerStore: store image "+fileName);
+        }
+        
+        function storeVideo(fileName) {
+            console.log("TrackerStore: store video "+fileName);
+        }
     }
 
     ImageSettings {

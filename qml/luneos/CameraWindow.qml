@@ -23,7 +23,7 @@
 import QtQuick 2.12
 
 Item {
-    id: _window
+    id: window
     property url standByIcon
     property Component initialPage
     property Item page
@@ -31,9 +31,6 @@ Item {
 
     Component.onDestruction: page.destroy()
     Component.onCompleted: {
-        screen.setAllowedOrientations(Screen.Landscape | Screen.LandscapeInverted)
-        theme.inverted = true
-
         if (initialPage) {
             page = initialPage.createObject(window)
             page.visible = true

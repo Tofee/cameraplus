@@ -206,7 +206,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[]) {
   qmlRegisterType<Position>("CameraPlus", 1, 0, "Position");
 
 #ifdef SAILFISH
-  view->engine()->addImportPath("/usr/share/harbour-cameraplus/lib/qt5/qml/");
+  view->engine()->addImportPath("/usr/palm/applications/cameraplus");
 #endif
 
   view->setSource(QUrl("qrc:/qml/main.qml"));

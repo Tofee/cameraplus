@@ -25,6 +25,6 @@ import QtQuick.Controls 2.5
 
 Page {
     anchors.fill: parent
-    color: cameraStyle.backgroundColor
+    // color: cameraStyle.backgroundColor
     property int orientationAngle: 0
 }

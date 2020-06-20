@@ -180,7 +180,7 @@ qint64 VideoPlayer::duration() const {
     return 0;
   }
 
-  qint64 dur = 0;
+  gint64 dur = 0;
 
 #if GST_CHECK_VERSION(1,0,0)
   if (!gst_element_query_duration(m_bin, GST_FORMAT_TIME, &dur)) {
@@ -208,7 +208,7 @@ qint64 VideoPlayer::position() {
     return 0;
   }
 
-  qint64 pos = 0;
+  gint64 pos = 0;
 
 #if GST_CHECK_VERSION(1,0,0)
   if (!gst_element_query_position(m_bin, GST_FORMAT_TIME, &pos)) {
@@ -251,7 +251,7 @@ bool VideoPlayer::seek(qint64 offset) {
     return false;
   }
 
-  qint64 pos = offset;
+  gint64 pos = offset;
 
   offset *= 1000000;
 

@@ -2,7 +2,6 @@ set(SOURCE_FILES
   main.cpp
   settings.cpp
   filenaming.cpp
-  cameraresources.cpp
   trackerstore.cpp
   focusrectangle.cpp
   sharehelper.cpp
@@ -29,7 +28,6 @@ set(SOURCE_FILES
 set(HEADER_FILES
   settings.h
   filenaming.h
-  cameraresources.h
   trackerstore.h
   focusrectangle.h
   sharehelper.h

@@ -25,9 +25,6 @@
 
 #include <QObject>
 
-class QTimer;
-class ContextProperty;
-
 class DisplayState : public QObject {
   Q_OBJECT
   Q_PROPERTY(bool inhibitDim READ isDimInhibited WRITE setInhibitDim NOTIFY inhibitDimChanged);
@@ -46,12 +43,7 @@ signals:
   void inhibitDimChanged();
   void isOnChanged();
 
-private slots:
-  void timeout();
-
 private:
-  ContextProperty *m_state;
-  QTimer *m_timer;
 };
 
 #endif /* DISPLAY_STATE_H */

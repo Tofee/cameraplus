@@ -19,32 +19,11 @@
  */
 
 #include "displaystate.h"
-#include <contextproperty.h>
-#include <QTimer>
-#include <QQmlInfo>
-#include <QDBusConnection>
-#include <QDBusMessage>
-#include <QDBusPendingCall>
 
-#define CONTEXT_PROPERTY "Screen.Blanked"
-#define DBUS_IFACE       "com.nokia.mce.request"
-#define DBUS_PATH        "/com/nokia/mce/request"
-#define DBUS_DEST        "com.nokia.mce"
-#define BLANKING_PAUSE   "req_display_blanking_pause"
-#define BLANKING_RESUME  "req_display_cancel_blanking_pause"
+#include <QQmlInfo>
 
 DisplayState::DisplayState(QObject *parent) :
-  QObject(parent),
-  m_state(new ContextProperty(CONTEXT_PROPERTY, this)),
-  m_timer(new QTimer(this)) {
-
-  m_timer->setSingleShot(false);
-  m_timer->setInterval(50 * 1000);
-
-  QObject::connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-  QObject::connect(m_state, SIGNAL(valueChanged()), this, SIGNAL(isOnChanged()));
-
-  m_state->waitForSubscription(true);
+  QObject(parent) {
 }
 
 DisplayState::~DisplayState() {
@@ -52,47 +31,13 @@ DisplayState::~DisplayState() {
 }
 
 bool DisplayState::isDimInhibited() const {
-  return m_timer->isActive();
+  return true;
 }
 
 void DisplayState::setInhibitDim(bool inhibit) {
-  if (m_timer->isActive() == inhibit) {
-    return;
-  }
-
-  if (!inhibit) {
-    QDBusMessage msg =
-      QDBusMessage::createMethodCall(DBUS_DEST, DBUS_PATH, DBUS_IFACE, BLANKING_RESUME);
-
-    QDBusConnection conn = QDBusConnection::systemBus();
-    if (!conn.isConnected()) {
-      qmlInfo(this) << "Unable to connect to DBus system bus.";
-    } else {
-      conn.asyncCall(msg);
-    }
-
-    m_timer->stop();
-  }
-  else {
-    timeout();
-    m_timer->start();
-  }
-
   emit inhibitDimChanged();
 }
 
-void DisplayState::timeout() {
-  QDBusMessage msg =
-    QDBusMessage::createMethodCall(DBUS_DEST, DBUS_PATH, DBUS_IFACE, BLANKING_PAUSE);
-
-  QDBusConnection conn = QDBusConnection::systemBus();
-  if (!conn.isConnected()) {
-    qmlInfo(this) << "Unable to connect to DBus system bus.";
-  } else {
-    conn.asyncCall(msg);
-  }
-}
-
 bool DisplayState::isOn() {
-  return m_state->value().toInt() != 1;
+  return true;
 }

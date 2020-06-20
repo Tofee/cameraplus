@@ -2,7 +2,6 @@ set(SOURCE_FILES
   main.cpp
   settings.cpp
   filenaming.cpp
-  trackerstore.cpp
   focusrectangle.cpp
   sharehelper.cpp
   deletehelper.cpp
@@ -16,7 +15,6 @@ set(SOURCE_FILES
   fileindex.cpp
   stack.cpp
   toolbarlayout.cpp
-  quillitem.cpp
   pluginloader.cpp
   qrangemodel.cpp
   phoneprofile.cpp
@@ -28,7 +26,6 @@ set(SOURCE_FILES
 set(HEADER_FILES
   settings.h
   filenaming.h
-  trackerstore.h
   focusrectangle.h
   sharehelper.h
   deletehelper.h
@@ -42,7 +39,6 @@ set(HEADER_FILES
   fileindex.h
   stack.h
   toolbarlayout.h
-  quillitem.h
   pluginloader.h
   qrangemodel.h
   phoneprofile.h

@@ -35,7 +35,6 @@
 
 #include "settings.h"
 #include "filenaming.h"
-#include "quillitem.h"
 #include "geocode.h"
 #include "deviceinfo.h"
 #include "soundvolumecontrol.h"
@@ -44,7 +43,10 @@
 #include "compass.h"
 #include "orientation.h"
 #include "mountprotector.h"
+#ifndef LUNEOS
+#include "quillitem.h"
 #include "trackerstore.h"
+#endif
 #include "focusrectangle.h"
 #include "sharehelper.h"
 #include "deletehelper.h"
@@ -161,7 +163,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[]) {
 
   qmlRegisterType<Settings>("CameraPlus", 1, 0, "Settings");
   qmlRegisterType<FileNaming>("CameraPlus", 1, 0, "FileNaming");
-  qmlRegisterType<QuillItem>("CameraPlus", 1, 0, "QuillItem");
   qmlRegisterType<Geocode>("CameraPlus", 1, 0, "ReverseGeocode");
   qmlRegisterType<DeviceInfo>("CameraPlus", 1, 0, "DeviceInfo");
   qmlRegisterType<SoundVolumeControl>("CameraPlus", 1, 0, "SoundVolumeControl");
@@ -170,7 +171,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[]) {
   qmlRegisterType<Compass>("CameraPlus", 1, 0, "CameraCompass");
   qmlRegisterType<Orientation>("CameraPlus", 1, 0, "CameraOrientation");
   qmlRegisterType<MountProtector>("CameraPlus", 1, 0, "MountProtector");
+#ifndef LUNEOS
+  qmlRegisterType<QuillItem>("CameraPlus", 1, 0, "QuillItem");
   qmlRegisterType<TrackerStore>("CameraPlus", 1, 0, "TrackerStore");
+#endif
   qmlRegisterType<FocusRectangle>("CameraPlus", 1, 0, "FocusRectangle");
   qmlRegisterType<ShareHelper>("CameraPlus", 1, 0, "ShareHelper");
   qmlRegisterType<DeleteHelper>("CameraPlus", 1, 0, "DeleteHelper");

@@ -21,7 +21,6 @@
 #include "platformsettings.h"
 #include <QDir>
 #include <QSettings>
-#include <Quill>
 #if defined(QT4)
 #include <QDeclarativeInfo>
 #elif defined(QT5)

@@ -42,7 +42,7 @@ if (PLATFORM STREQUAL "sailfish")
   find_package(Qt5Qml REQUIRED)
   find_package(Qt5Quick REQUIRED)
   find_package(Qt5Qml REQUIRED)
-  find_package(Qt5LinguistTools)
+  find_package(Qt5LinguistTools REQUIRED)
   pkg_check_modules(QT_SYSTEM_INFO Qt5SystemInfo)
   add_definitions(-DQT5 -DSAILFISH)
   set(SAILFISH 1)
@@ -68,6 +68,29 @@ elseif (PLATFORM STREQUAL "harmattan")
     ARGS "-query QT_INSTALL_IMPORTS " OUTPUT_VARIABLE QT_INSTALL_IMPORTS)
 
   message("Building for Harmattan")
+elseif (PLATFORM STREQUAL "luneos")
+  find_package(Qt5Gui REQUIRED)
+  find_package(Qt5Qml REQUIRED)
+  find_package(Qt5Quick REQUIRED)
+  find_package(Qt5Qml REQUIRED)
+  find_package(Qt5LinguistTools)
+  pkg_check_modules(QT_SYSTEM_INFO Qt5SystemInfo)
+
+  # to remove at end of migration
+  add_definitions(-DQT5 -DSAILFISH)
+  set(SAILFISH 1)
+
+  add_definitions(-DQT5 -DLUNEOS)
+  set(LUNEOS 1)
+  set(QT5 1)
+
+  # This is used by exec_program() to get the imports dir
+  get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake LOCATION)
+  # We need to query this manually
+  exec_program(${QT_QMAKE_EXECUTABLE}
+    ARGS "-query QT_INSTALL_QML " OUTPUT_VARIABLE QT_INSTALL_IMPORTS)
+
+  message("Building for Sailfish")
 else()
   message(FATAL_ERROR "unknown platform")
 endif()

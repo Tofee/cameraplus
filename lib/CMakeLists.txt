@@ -113,7 +113,7 @@ if (HARMATTAN)
 
   # We need to set this manually
   set(EXTRA_LIBRARIES -lgstphotography-0.10)
-elseif (SAILFISH)
+elseif (SAILFISH OR LUNEOS)
   set(EXTRA_HEADER_FILES qtcamviewfinderrenderernemo.h)
   set(EXTRA_SOURCE_FILES qtcamviewfinderrenderernemo.cpp)
   pkg_check_modules(GST REQUIRED gstreamer-1.0 gstreamer-video-1.0 gstreamer-tag-1.0

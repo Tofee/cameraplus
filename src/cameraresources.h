@@ -24,10 +24,6 @@
 #define CAMERA_RESOURCES_H
 
 #include <QObject>
-#include <QThread>
-#include <policy/resource-set.h>
-
-class CameraResourcesWorker;
 
 class CameraResources : public QObject {
   Q_OBJECT
@@ -37,7 +33,6 @@ class CameraResources : public QObject {
   Q_PROPERTY(bool scaleAcquired READ isScaleAcquired NOTIFY scaleAcquisitionChanged);
 
   Q_ENUMS(Mode);
-  Q_ENUMS(ResourceType);
 
 public:
   typedef enum {
@@ -62,58 +57,6 @@ signals:
   void hijackedChanged();
   void updated();
   void scaleAcquisitionChanged();
-
-private:
-  bool isResourceGranted(const ResourcePolicy::ResourceType& resource) const;
-
-  CameraResourcesWorker *m_worker;
-  QThread m_thread;
-};
-
-class CameraResourcesWorker : public QObject {
-  Q_OBJECT
-
-public:
-  CameraResourcesWorker(QObject *parent = 0);
-  ~CameraResourcesWorker();
-
-public slots:
-  void acquire(bool *ok, const CameraResources::Mode& mode);
-  void acquired(bool *ok);
-  void hijacked(bool *ok);
-  void isResourceGranted(bool *ok, int resource);
-
-signals:
-  void acquiredChanged();
-  void hijackedChanged();
-  void updated();
-
-private slots:
-  void init();
-
-  void resourcesReleased();
-  void lostResources();
-  void resourcesGranted(const QList<ResourcePolicy::ResourceType>& optional);
-  void resourcesDenied();
-
-private:
-  bool release();
-
-  bool updateSet(const QList<ResourcePolicy::ResourceType>& required,
-		 const QList<ResourcePolicy::ResourceType>& optional =
-		 QList<ResourcePolicy::ResourceType>());
-
-  QList<ResourcePolicy::ResourceType> listSet();
-
-  void setAcquired(bool acquired);
-  void setHijacked(bool hijacked);
-
-  ResourcePolicy::ResourceSet *m_set;
-
-  CameraResources::Mode m_mode;
-  bool m_acquired;
-  bool m_acquiring;
-  bool m_hijacked;
 };
 
 #endif /* CAMERA_RESOURCES_H */

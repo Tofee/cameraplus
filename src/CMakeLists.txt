@@ -2,6 +2,7 @@ set(SOURCE_FILES
   main.cpp
   settings.cpp
   filenaming.cpp
+  cameraresources.cpp
   focusrectangle.cpp
   sharehelper.cpp
   deletehelper.cpp
@@ -26,6 +27,7 @@ set(SOURCE_FILES
 set(HEADER_FILES
   settings.h
   filenaming.h
+  cameraresources.h
   focusrectangle.h
   sharehelper.h
   deletehelper.h

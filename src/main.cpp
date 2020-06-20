@@ -40,6 +40,7 @@
 #include "soundvolumecontrol.h"
 #include "displaystate.h"
 #include "fsmonitor.h"
+#include "cameraresources.h"
 #include "compass.h"
 #include "orientation.h"
 #include "mountprotector.h"
@@ -168,6 +169,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[]) {
   qmlRegisterType<SoundVolumeControl>("CameraPlus", 1, 0, "SoundVolumeControl");
   qmlRegisterType<DisplayState>("CameraPlus", 1, 0, "DisplayState");
   qmlRegisterType<FSMonitor>("CameraPlus", 1, 0, "FSMonitor");
+  qmlRegisterType<CameraResources>("CameraPlus", 1, 0, "CameraResources");
   qmlRegisterType<Compass>("CameraPlus", 1, 0, "CameraCompass");
   qmlRegisterType<Orientation>("CameraPlus", 1, 0, "CameraOrientation");
   qmlRegisterType<MountProtector>("CameraPlus", 1, 0, "MountProtector");

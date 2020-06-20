@@ -32,7 +32,7 @@
 #ifdef HARMATTAN
 #define PLUGIN_PATH "/usr/share/cameraplus/modes/"
 #else
-#define PLUGIN_PATH "/usr/share/harbour-cameraplus/share/modes/"
+#define PLUGIN_PATH "/usr/palm/applications/cameraplus/modes/"
 #endif
 
 Plugin::Plugin(const QDir& dir, const QString& fileName, QObject * parent) :

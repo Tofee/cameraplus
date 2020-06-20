@@ -72,7 +72,7 @@ elseif (SAILFISH)
   include_directories("${CMAKE_BINARY_DIR}/deps/usr/include/qt5/quill-qt5/")
 elseif (LUNEOS)
   include_directories(luneos)
-  include(sailfish/CMakeLists.txt)
+  include(luneos/CMakeLists.txt)
 
   qt5_add_resources(qrc_extra ${EXTRA_RESOURCES})
   qt5_add_resources(qrc_qml ../qml/qml.qrc)

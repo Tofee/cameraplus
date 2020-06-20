@@ -97,4 +97,6 @@ add_definitions(-DQT_PLUGIN)
 
 if (SAILFISH)
   qt5_use_modules(declarativeqtcamera Qml Quick DBus)
+elseif (LUNEOS)
+  qt5_use_modules(declarativeqtcamera Qml Quick DBus)
 endif()

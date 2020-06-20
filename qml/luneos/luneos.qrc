@@ -1,0 +1,17 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/qml">
+	<file>CameraLabel.qml</file>
+	<file>CameraTextField.qml</file>
+	<file>CameraButton.qml</file>
+	<file>CameraCheckButton.qml</file>
+	<file>CameraWindow.qml</file>
+	<file>CameraPositionSource.qml</file>
+	<file>CameraShareHelper.qml</file>
+	<file>CameraPage.qml</file>
+	<file>CameraProximitySensor.qml</file>
+	<file>CameraTextSwitch.qml</file>
+	<file>CameraStyle.qml</file>
+	<file>DeletePopup.qml</file>
+    </qresource>
+</RCC>

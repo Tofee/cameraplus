@@ -78,7 +78,6 @@ elseif (PLATFORM STREQUAL "luneos")
 
   # to remove at end of migration
   add_definitions(-DQT5 -DSAILFISH)
-  set(SAILFISH 1)
 
   add_definitions(-DQT5 -DLUNEOS)
   set(LUNEOS 1)
